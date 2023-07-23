@@ -13,7 +13,7 @@ pipeline {
             steps {
                 // Use Maven to build the petclinic application
                 withMaven(maven: 'apache-maven-3.9.3') {
-                    sh "mvn clean package" -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true
+                    sh "mvn clean package"
                 }
             }
         }
