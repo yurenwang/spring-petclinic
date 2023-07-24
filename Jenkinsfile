@@ -12,7 +12,9 @@ pipeline {
         stage('Build') {
             steps {
                 // Use Gradle to build the petclinic application
-                sh 'mvn clean package'
+                withMaven(maven: 'mvn') {
+                    sh "mvn clean package"
+                }
             }
         }
 
