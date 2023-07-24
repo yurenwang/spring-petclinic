@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        JAVA_HOME = "/Library/Java/JavaVirtualMachines/jdk-20.jdk/Contents/Home"
-    }
-
     stages {
         stage('Checkout') {
             steps {
