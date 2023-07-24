@@ -43,7 +43,7 @@ pipeline {
                     def projectVersion = "1.0" 
                     def sonarHostUrl = "http://localhost:9000"
 
-                    sh "${sonarScannerHome}/bin/sonar-scanner -Dsonar.projectKey=${projectName} -Dsonar.projectName=${projectName} -Dsonar.projectVersion=${projectVersion} -Dsonar.host.url=${sonarHostUrl}"
+                    sh "${sonarScannerHome}/bin/sonar-scanner -Dsonar.projectKey=${projectName} -Dsonar.projectName=${projectName} -Dsonar.projectVersion=${projectVersion} -Dsonar.host.url=${sonarHostUrl} -X"
                     
                 }
             }
