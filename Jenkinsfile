@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Use Gradle to build the petclinic application
-                sh 'gradle clean build'
+                sh 'mvn clean package'
             }
         }
 
