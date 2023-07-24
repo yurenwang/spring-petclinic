@@ -3,14 +3,10 @@ pipeline {
 
     environment {
         // If your using the official maven image, these are probably where it puts it
-        MAVEN_HOME = '/usr/share/maven'
+        // MAVEN_HOME = '/usr/share/maven'
         JAVA_HOME= '/opt/java/openjdk' // '/usr/local/openjdk-20'
     }
 
-    tools { 
-        maven 'MAVEN_HOME' 
-        jdk 'JAVA_HOME' 
-    }
 
     stages {
         stage('Checkout') {
@@ -23,7 +19,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Use Gradle to build the petclinic application
-                withMaven {
+                withMaven (maven: 'maven-3.9.3') {
                     sh "mvn clean package"
                 }
             }
