@@ -20,7 +20,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Use Gradle to build the petclinic application
+                // Use Maven to build the petclinic application
                 withMaven (maven: 'maven-3.9.3') {
                     sh "mvn clean package"
                 }
@@ -30,7 +30,9 @@ pipeline {
         stage('Test') {
             steps {
                 // Run tests (if applicable)
-                sh 'mvn test'
+                withMaven (maven: 'maven-3.9.3') {
+                    sh 'mvn test'
+                }
             }
         }
 
