@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-        JAVA_HOME = "/Library/Java/JavaVirtualMachines/jdk-20.jdk/Contents/Home"
-    }
+    // environment {
+    //     JAVA_HOME = "/Library/Java/JavaVirtualMachines/jdk-20.jdk/Contents/Home"
+    // }
 
     stages {
         stage('Checkout') {
@@ -16,9 +16,9 @@ pipeline {
         stage('Build') {
             steps {
                 // Use Maven to build the petclinic application
-                withMaven(maven: 'apache-maven-3.9.3') {
+                // withMaven(maven: 'apache-maven-3.9.3') {
                     sh "mvn clean package"
-                }
+                // }
             }
         }
 
