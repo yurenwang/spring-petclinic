@@ -37,11 +37,14 @@ pipeline {
             steps {
                 script {
                     // Run static code analysis with SonarQube Scanner
+                    def sonarScannerHome = tool 'SonarQube Scanner'
+                    
                     def projectName = "petclinic" 
                     def projectVersion = "1.0" 
                     def sonarHostUrl = "http://localhost:9000"
 
-                    sh "sonar-scanner -Dsonar.projectKey=${projectName} -Dsonar.projectName=${projectName} -Dsonar.projectVersion=${projectVersion} -Dsonar.host.url=${sonarHostUrl}"
+                    sh "${sonarScannerHome}/bin/sonar-scanner -Dsonar.projectKey=${projectName} -Dsonar.projectName=${projectName} -Dsonar.projectVersion=${projectVersion} -Dsonar.host.url=${sonarHostUrl}"
+                    
                 }
             }
         }
