@@ -41,7 +41,7 @@ pipeline {
                     
                     def projectName = "petclinic" 
                     def projectVersion = "1.0" 
-                    def sonarHostUrl = "sonarqube:9000"
+                    def sonarHostUrl = "http://sonarqube:9000"
 
                     sh "${sonarScannerHome}/bin/sonar-scanner -Dsonar.projectKey=${projectName} -Dsonar.projectName=${projectName} -Dsonar.projectVersion=${projectVersion} -Dsonar.host.url=${sonarHostUrl} -Dsonar.login=sqa_3498eac4d96e05521d51345e64cb441db6ad0e63 -X"
                     
