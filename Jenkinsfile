@@ -4,9 +4,13 @@ pipeline {
     environment {
         // If your using the official maven image, these are probably where it puts it
         MAVEN_HOME = '/usr/share/maven'
-        JAVA_HOME= '/usr/local/openjdk-20'
+        JAVA_HOME= '/opt/java/openjdk' // '/usr/local/openjdk-20'
     }
 
+    tools { 
+        maven 'MAVEN_HOME' 
+        jdk 'JAVA_HOME' 
+    }
 
     stages {
         stage('Checkout') {
