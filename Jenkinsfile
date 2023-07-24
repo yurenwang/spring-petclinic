@@ -12,9 +12,9 @@ pipeline {
         stage('Build') {
             steps {
                 // Use Maven to build the petclinic application
-                withMaven(maven: 'apache-maven-3.9.3') {
+                // withMaven(maven: 'apache-maven-3.9.3') {
                     sh "mvn clean package"
-                }
+                // }
             }
         }
 
