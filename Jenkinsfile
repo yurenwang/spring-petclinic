@@ -2,9 +2,6 @@ pipeline {
     agent any
 
     environment {
-        // If your using the official maven image, these are probably where it puts it
-        // MAVEN_HOME = '/usr/share/maven'
-        // JAVA_HOME= '/opt/java/openjdk' // '/usr/local/openjdk-20'
         JAVA_HOME= '/usr/lib/jvm/java-17-openjdk-arm64'
         PATH= '/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     }
