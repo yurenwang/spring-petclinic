@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+    environment {
+        // If your using the official maven image, these are probably where it puts it
+        MAVEN_HOME = '/usr/share/maven'
+        JAVA_HOME= '/usr/local/openjdk-20'
+    }
+
+
     stages {
         stage('Checkout') {
             steps {
