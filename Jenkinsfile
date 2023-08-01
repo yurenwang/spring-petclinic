@@ -56,8 +56,9 @@ pipeline {
             steps {
                 ansiblePlaybook(
                     playbook: 'ansible-playbook/web_server.yml',
-                    inventory: 'web_server,',
-                    installation: 'ansible'
+                    inventory: 'localhost,',
+                    installation: 'ansible',
+		    ansiblePort: 2222
                 )
             }
         }
