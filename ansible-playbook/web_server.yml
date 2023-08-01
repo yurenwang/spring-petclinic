@@ -1,7 +1,7 @@
 # ansible-playbook/web_server.yml
 
 ---
-- hosts: web_server
+- hosts: localhost
   become: yes
 
   tasks:
@@ -14,7 +14,7 @@
         - openjdk-17-jdk
 
 - name: Deploy Petclinic App
-  hosts: web_server
+  hosts: localhost
   become: yes
 
   tasks:

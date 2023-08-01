@@ -1,10 +1,21 @@
 # Dockerfile_web_server
 
-# Use the 'adoptopenjdk' base image with Java 17
-FROM openjdk:17-jdk
+# Use the official Nginx base image
+FROM nginx:latest
+
+# Install SSH server
+RUN apt-get update && apt-get install -y openssh-server openjdk-17-jdk
 
 # Set the working directory
 WORKDIR /app
 
-# Command to keep the container running
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+# Expose port 8080 for web traffic
+EXPOSE 8080
+
+# Expose port 22 for SSH access
+EXPOSE 22
+
+# Start SSH server during container startup
+CMD ["/usr/sbin/sshd", "-D"]
+
+# ENTRYPOINT ["tail", "-f", "/dev/null"]
