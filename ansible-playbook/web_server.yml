@@ -1,0 +1,30 @@
+# ansible-playbook/web_server.yml
+
+---
+- hosts: web_server
+  become: yes
+
+  tasks:
+    - name: Update package manager and install Java
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - ca-certificates-java
+        - openjdk-17-jdk
+
+- name: Deploy Petclinic App
+  hosts: web_server
+  become: yes
+
+  tasks:
+    - name: Copy Petclinic JAR file to the server
+      copy:
+        src: /path/to/your_petclinic_app.jar
+        dest: /app/your_petclinic_app.jar
+        mode: 0644
+
+    - name: Start Petclinic Application
+      command: "java -jar /app/your_petclinic_app.jar > /app/petclinic.log 2>&1 &"
+      async: 0
+      poll: 0
