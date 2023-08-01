@@ -52,16 +52,17 @@ pipeline {
             }
         }
 
-        stage('Deploy to Web Server') {
-            steps {
-                ansiblePlaybook(
+	stage('Deploy to Web Server') {
+    	    steps {
+        	ansiblePlaybook(
                     playbook: 'ansible-playbook/web_server.yml',
-                    inventory: 'localhost,',
+                    inventory: 'localhost,', // Use 'localhost' to target the Jenkins server
                     installation: 'ansible',
-		    ansiblePort: 2222
-                )
-            }
-        }
+                    ansiblePort: 2222
+        	)
+    	    }
+	}
+
 
         stage('Archive') {
             steps {
