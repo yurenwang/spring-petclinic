@@ -52,6 +52,16 @@ pipeline {
             }
         }
 
+        stage('Deploy to Web Server') {
+            steps {
+                ansiblePlaybook(
+                    playbook: 'ansible-playbook/web_server.yml',
+                    inventory: 'web_server,',
+                    installation: 'ansible'
+                )
+            }
+        }
+
         stage('Archive') {
             steps {
                 // Archive the JAR artifact
