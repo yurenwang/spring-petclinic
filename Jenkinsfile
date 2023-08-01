@@ -58,7 +58,9 @@ pipeline {
                     playbook: 'ansible-playbook/web_server.yml',
                     inventory: 'localhost,', // Use 'localhost' to target the Jenkins server
                     installation: 'ansible',
-                    ansiblePort: 2222
+                    extraVars: [
+                	"ansible_port=2222" // Specify the SSH port for the web_server container
+            	    ]
         	)
     	    }
 	}
