@@ -3,22 +3,22 @@
 ---
 - hosts: localhost
   connection: local  # Use local connection plugin
-  # become: yes  # Elevate privileges for this task
+  become: yes  # Elevate privileges
 
   tasks:
-    # - name: Create /app directory
-    #   file:
-    #     path: /app
-    #     state: directory
-    #     mode: 0755
+    - name: Create /app directory
+      file:
+        path: /app
+        state: directory
+        mode: 0755
 
     - name: Deploy Petclinic App
       copy:
         src: /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar
-        dest: /petclinic_app.jar
+        dest: /app/petclinic_app.jar
         mode: 0644
 
     - name: Start Petclinic Application
-      command: "java -jar /petclinic_app.jar > /petclinic.log 2>&1 &"
+      command: "java -jar /app/petclinic_app.jar > /app/petclinic.log 2>&1 &"
       async: 0
       poll: 0
