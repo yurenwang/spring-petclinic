@@ -3,7 +3,7 @@
 ---
 - hosts: localhost
   connection: local  # Use local connection plugin
-  become: yes  # Elevate privileges
+  become: true  # Elevate privileges
 
   tasks:
     - name: Create /app directory
