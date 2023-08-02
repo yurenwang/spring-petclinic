@@ -3,10 +3,10 @@
 ---
 - hosts: localhost
   connection: local  # Use local connection plugin
+  become: yes  # Elevate privileges for this task
 
   tasks:
     - name: Create /app directory
-      become: yes  # Elevate privileges for this task
       file:
         path: /app
         state: directory
