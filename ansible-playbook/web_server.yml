@@ -7,7 +7,7 @@
   tasks:
     - name: Deploy Petclinic App
       copy:
-        src: /path/to/your_petclinic_app.jar
+        src: /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar
         dest: /app/your_petclinic_app.jar
         mode: 0644
 
