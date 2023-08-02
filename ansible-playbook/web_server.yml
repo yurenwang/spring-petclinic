@@ -5,6 +5,13 @@
   connection: local  # Use local connection plugin
 
   tasks:
+    - name: Create /app directory
+      become: yes  # Elevate privileges for this task
+      file:
+        path: /app
+        state: directory
+        mode: 0755
+
     - name: Deploy Petclinic App
       copy:
         src: /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar
