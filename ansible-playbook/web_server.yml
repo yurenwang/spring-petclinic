@@ -1,15 +1,26 @@
 # ansible-playbook/web_server.yml
 
 ---
-- hosts: docker
-  vars:
-    ansible_connection: docker
+- hosts: localhost
+  connection: local  # Use local connection plugin
+  become: yes  # Elevate privileges
+
   tasks:
     - name: Deploy Petclinic App
       copy:
         src: /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar
         dest: /app/petclinic_app.jar
         mode: 0644
+
+    - name: Use SSH port forwarding to copy JAR from Jenkins container to destination container
+      command: scp -P 22 /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar user@localhost:/app/petclinic_app.jar
+      delegate_to: localhost  # Execute the command on the Jenkins container
+
+    - name: Ensure destination container is running
+      docker_container:
+        name: web_server  # name of the destination container
+        image: web_server:latest  # image name and tag of the destination container
+        state: started
 
     - name: Start Petclinic Application
       command: "java -jar /app/petclinic_app.jar > /app/petclinic.log 2>&1 &"
