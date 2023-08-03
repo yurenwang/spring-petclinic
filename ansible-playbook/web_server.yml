@@ -1,34 +1,17 @@
 # ansible-playbook/web_server.yml
 
 ---
-- hosts: localhost
-  connection: local  # Use local connection plugin
-  # become: true  # Elevate privileges
-
+- hosts: web_server
+  vars:
+    ansible_connection: docker
   tasks:
-    # - name: Create /app directory
-    #   file:
-    #     path: /app
-    #     state: directory
-    #     mode: 0755
-
-    # - name: Deploy Petclinic App
-    #   copy:
-    #     src: /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar
-    #     dest: /app/petclinic_app.jar
-    #     mode: 0644
-
     - name: Deploy Petclinic App
-      docker_container:  
-        name: web_server  
-        image: "nginx:latest"  
-        volumes:
-          - "/var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar:/app/petclinic_app.jar:ro"
-        ports:
-          - "80:80"
-        restart: yes
+      copy:
+        src: /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar
+        dest: /app/petclinic_app.jar
+        mode: 0644
 
-    # - name: Start Petclinic Application
-    #   command: "java -jar /app/petclinic_app.jar > /app/petclinic.log 2>&1 &"
-    #   async: 0
-    #   poll: 0
+    - name: Start Petclinic Application
+      command: "java -jar /app/petclinic_app.jar > /app/petclinic.log 2>&1 &"
+      async: 0
+      poll: 0
