@@ -6,11 +6,11 @@
   become: yes  # Elevate privileges
 
   tasks:
-    - name: Deploy Petclinic App
-      copy:
-        src: /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar
-        dest: /app/petclinic_app.jar
-        mode: 0644
+    # - name: Deploy Petclinic App
+    #   copy:
+    #     src: /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar
+    #     dest: /app/petclinic_app.jar
+    #     mode: 0644
 
     - name: Use SSH port forwarding to copy JAR from Jenkins container to destination container
       command: scp -P 22 /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar user@localhost:/app/petclinic_app.jar
