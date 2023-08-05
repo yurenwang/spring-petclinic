@@ -3,7 +3,8 @@
 ---
 - hosts: localhost
   connection: local  # Use local connection plugin
-  become: yes  # Elevate privileges
+  gather_facts: false
+  # become: yes  # Elevate privileges
 
   tasks:
     # - name: Deploy Petclinic App
