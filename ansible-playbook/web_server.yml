@@ -2,7 +2,7 @@
 
 ---
 - hosts: localhost
-  # connection: local  # Use local connection plugin
+  connection: local  # Use local connection plugin
   gather_facts: false
   # become: yes  # Elevate privileges
 
