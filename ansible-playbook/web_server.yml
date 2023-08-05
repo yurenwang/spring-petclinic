@@ -19,8 +19,8 @@
 
     - name: Ensure destination container is running
       docker_container:
-        name: yurenwan_assignment1docker-web_server-1  # name of the destination container
-        image: yurenwan_assignment1docker-web_server:latest  # image name and tag of the destination container
+        name: web_server  # name of the destination container
+        image: web_server:latest  # image name and tag of the destination container
         state: started
 
     - name: Start Petclinic Application
