@@ -14,7 +14,7 @@
     #     mode: 0644
 
     - name: Use SSH port forwarding to copy JAR from Jenkins container to destination container
-      command: scp -P 22 /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar root@localhost:/app/petclinic_app.jar
+      command: scp -P 2222 /var/jenkins_home/workspace/petclinic-pipeline/target/spring-petclinic-3.1.0-SNAPSHOT.jar root@localhost:/app/petclinic_app.jar
       delegate_to: localhost  # Execute the command on the Jenkins container
 
     - name: Ensure destination container is running
